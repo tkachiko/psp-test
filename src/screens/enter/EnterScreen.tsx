@@ -26,6 +26,7 @@ export const EnterScreen: FC<any> = ({navigation}) => {
                     fontSize={17}
                     color={'#fff'}
                     textAlign={'center'}
+                    title={'Врач'}
                     onPress={() =>
                       navigation.navigate('Register')
                     }
