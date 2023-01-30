@@ -2,27 +2,33 @@ import React, {FC} from 'react'
 import {Text, TouchableOpacity} from 'react-native'
 
 type PropsType = {
-  borderWidth: number
-  borderRadius: number
+  borderWidth?: number
+  borderRadius?: number
   paddingVertical: number
   paddingHorizontal: number
-  borderColor: string
+  borderColor?: string
   fontSize: number
-  color: string
+  color?: string
+  title: string
+  fontWeight?: 'normal' | 'bold' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | undefined
+  backgroundColor?: string
   textAlign: 'auto' | 'left' | 'right' | 'center' | 'justify' | undefined
   onPress: () => void
 }
 
 export const CustomButton: FC<PropsType> = ({
-                                              borderWidth,
-                                              borderRadius,
+                                              borderWidth = 2,
+                                              borderRadius = 12,
                                               borderColor,
                                               color,
                                               paddingHorizontal,
                                               paddingVertical,
                                               textAlign,
                                               fontSize,
+                                              backgroundColor,
+                                              fontWeight = '600',
                                               onPress,
+                                              title,
                                             }) => {
   return (
     <TouchableOpacity>
@@ -35,10 +41,12 @@ export const CustomButton: FC<PropsType> = ({
         paddingVertical,
         textAlign,
         fontSize,
+        backgroundColor,
+        fontWeight,
       }}
             onPress={onPress}
       >
-        Врач
+        {title}
       </Text>
     </TouchableOpacity>
   )
