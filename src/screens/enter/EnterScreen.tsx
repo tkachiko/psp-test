@@ -1,8 +1,10 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Logo} from '../../components/Logo'
 import {CustomButton} from '../../components/CustomButton'
+import {FC} from 'react'
 
-export const EnterScreen = () => {
+export const EnterScreen: FC<any> = ({navigation}) => {
+
   return (
     <View style={stylesContainer.container}>
       <Logo width={112}
@@ -23,7 +25,11 @@ export const EnterScreen = () => {
                     borderColor={'#fff'}
                     fontSize={17}
                     color={'#fff'}
-                    textAlign={'center'} />
+                    textAlign={'center'}
+                    onPress={() =>
+                      navigation.navigate('Register')
+                    }
+      />
     </View>
   )
 }

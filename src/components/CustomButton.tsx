@@ -10,18 +10,20 @@ type PropsType = {
   fontSize: number
   color: string
   textAlign: 'auto' | 'left' | 'right' | 'center' | 'justify' | undefined
+  onPress: () => void
 }
 
 export const CustomButton: FC<PropsType> = ({
-                                        borderWidth,
-                                        borderRadius,
-                                        borderColor,
-                                        color,
-                                        paddingHorizontal,
-                                        paddingVertical,
-                                        textAlign,
-                                        fontSize,
-                                      }) => {
+                                              borderWidth,
+                                              borderRadius,
+                                              borderColor,
+                                              color,
+                                              paddingHorizontal,
+                                              paddingVertical,
+                                              textAlign,
+                                              fontSize,
+                                              onPress,
+                                            }) => {
   return (
     <TouchableOpacity>
       <Text style={{
@@ -33,7 +35,9 @@ export const CustomButton: FC<PropsType> = ({
         paddingVertical,
         textAlign,
         fontSize,
-      }}>
+      }}
+            onPress={onPress}
+      >
         Врач
       </Text>
     </TouchableOpacity>

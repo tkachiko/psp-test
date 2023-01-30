@@ -1,10 +1,18 @@
-import {View} from 'react-native'
-import {EnterScreen, stylesContainer} from './src/screens/enter/EnterScreen'
+import React from 'react'
+import {EnterScreen} from './src/screens/enter/EnterScreen'
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import {RegisterScreen} from './src/screens/register/RegisterScreen'
+import {NavigationContainer} from '@react-navigation/native'
 
-export default function App () {
+const Stack = createNativeStackNavigator()
+
+export default function App() {
   return (
-    <View style={stylesContainer.container}>
-      <EnterScreen />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name={'Enter'} component={EnterScreen} />
+        <Stack.Screen name={'Register'} component={RegisterScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
