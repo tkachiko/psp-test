@@ -1,5 +1,5 @@
-import {StyleSheet, View} from 'react-native'
-import {EnterScreen} from './src/screens/enter/EnterScreen'
+import {View} from 'react-native'
+import {EnterScreen, stylesContainer} from './src/screens/enter/EnterScreen'
 
 export default function App () {
   return (
@@ -8,13 +8,3 @@ export default function App () {
     </View>
   )
 }
-
-export const stylesContainer = StyleSheet.create({
-  container: {
-    flex: 2,
-    backgroundColor: '#1E63EE',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
-
