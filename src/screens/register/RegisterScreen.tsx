@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC} from 'react'
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native'
 import {Logo} from '../../components/Logo'
 import {useNavigation} from '@react-navigation/native'
@@ -9,9 +9,7 @@ import {PickerSelect} from '../../components/PickerSelect'
 import {CheckBoxConsent} from '../../components/CheckBoxConsent'
 import {AddFile} from '../../components/AddFile'
 
-export const RegisterScreen = () => {
-  const navigation = useNavigation()
-
+export const RegisterScreen: FC<any> = ({navigation}) => {
   const {
     control,
     handleSubmit,
@@ -19,8 +17,10 @@ export const RegisterScreen = () => {
     formState: {errors, isValid},
   } = useForm({mode: 'onBlur'})
 
-  const onSubmit = (data: any) => console.log(data)
-
+  const onSubmit = (data: any) => {
+    navigation.navigate('Confirm')
+    console.log(data)
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -81,7 +81,7 @@ export const RegisterScreen = () => {
                        controllerName={'promoCode'}
                        control={control}
                        errors={errors} />
-        <CustomButton onPress={handleSubmit(onSubmit)}
+        <CustomButton onPress={() => navigation.navigate('Confirm')}
                       color={'#fff'}
                       borderColor={'#1E63EE'}
                       backgroundColor={'#1E63EE'}
