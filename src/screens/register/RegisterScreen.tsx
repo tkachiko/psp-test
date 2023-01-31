@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native'
 import {useForm} from 'react-hook-form'
 import {CustomButton} from '../../components/CustomButton'
 import {InputRegister} from '../../components/InputRegister'
-import {InputCity} from '../../components/InputCity'
+import {PickerSelect} from '../../components/PickerSelect'
 import {CheckBoxConsent} from '../../components/CheckBoxConsent'
 import {AddFile} from '../../components/AddFile'
 
@@ -15,6 +15,7 @@ export const RegisterScreen = () => {
   const {
     control,
     handleSubmit,
+    register,
     formState: {errors, isValid},
   } = useForm({mode: 'onBlur'})
 
@@ -30,34 +31,56 @@ export const RegisterScreen = () => {
       <ScrollView style={styles.scrollContainer}>
         <InputRegister textName={'Фамилия'}
                        placeHolderName={'Фамилия'}
-                       controllerName={'lastName'} />
+                       controllerName={'lastName'}
+                       control={control}
+                       errors={errors}
+        />
         <InputRegister textName={'Имя'}
                        placeHolderName={'Имя'}
-                       controllerName={'firstName'} />
+                       controllerName={'firstName'}
+                       control={control}
+                       errors={errors} />
         <InputRegister textName={'Отчество'}
                        placeHolderName={'Отчество'}
-                       controllerName={'middleName'} />
+                       controllerName={'middleName'}
+                       control={control}
+                       errors={errors} />
         <InputRegister textName={'Телефон'}
                        placeHolderName={'+7 (___) ___-__-__'}
-                       placeholderTextColor={'black'}
-                       controllerName={'middleName'} />
+                       placeholderTextColor={'#000'}
+                       controllerName={'middleName'}
+                       control={control}
+                       errors={errors} />
         <InputRegister textName={'Email'}
                        placeHolderName={'Email'}
-                       controllerName={'email'} />
-        <InputCity controllerName={'city'} />
+                       controllerName={'email'}
+                       control={control}
+                       errors={errors} />
+        <PickerSelect controllerName={'city'}
+                      textName={'Город'}
+                      placeholder={{label: 'Выберите', value: null}}
+                      items={[{label: 'Москва', value: 'moscow'},
+                        {label: 'Санкт-Петербург', value: 'piter'},
+                        {label: 'Мурманск', value: 'murmansk'}]} />
         <AddFile textName={'Диплом'}
                  placeHolderName={'Прикрепить файл'}
                  placeholderTextColor={'#1E63EE'} />
-        <InputRegister textName={'Специали-\nзация'}
-                       placeHolderName={'Специализация'}
-                       controllerName={'specialization'} />
+        <PickerSelect textName={'Специали-\nзация'}
+                      controllerName={'specialization'}
+                      placeholder={{label: 'Специализация', value: null}}
+                      items={[{label: 'Терапевт', value: 'therapist'},
+                        {label: 'Хирург', value: 'surgeon'}]} />
         <CheckBoxConsent textConsent={'Согласие на обработку персональных данных'} />
         <CheckBoxConsent textConsent={'Согласие на участие в акциях \n' +
           'по продвижению приложения'} />
-        <CheckBoxConsent textConsent={'Согласие на участие в галерее рекомендованных врачей'} />
-        <InputRegister textName={'Введите\nпромокод'}
+        <CheckBoxConsent textConsent={'Согласие на участие в галерее \n' +
+          'рекомендованных врачей'} />
+        <InputRegister textName={'Введите \n' +
+          'промокод'}
                        placeHolderName={'Промокод'}
-                       controllerName={'promoCode'} />
+                       controllerName={'promoCode'}
+                       control={control}
+                       errors={errors} />
         <CustomButton onPress={handleSubmit(onSubmit)}
                       color={'#fff'}
                       borderColor={'#1E63EE'}
@@ -73,7 +96,7 @@ export const RegisterScreen = () => {
   )
 }
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     minHeight: '100%',
     backgroundColor: '#fff',
@@ -81,6 +104,7 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 100,
   },
   scrollContainer: {
     minHeight: '100%',

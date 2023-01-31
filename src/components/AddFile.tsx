@@ -7,10 +7,9 @@ interface AddFileType {
     placeHolderName?: string
     controllerName?: string
     placeholderTextColor?: string
-
 }
 
-export const AddFile: FC<AddFileType> = memo(({placeHolderName, controllerName, textName, placeholderTextColor}) => {
+export const AddFile: FC<AddFileType> = memo(({placeHolderName, textName, placeholderTextColor}) => {
 
     const selectDoc = async () => {
         try {
@@ -47,6 +46,7 @@ const styles = StyleSheet.create({
         width: 263,
         height: 48,
         borderColor: '#1E63EE',
+        borderStyle: 'dashed',
         padding: 14,
     },
 })

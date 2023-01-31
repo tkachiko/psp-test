@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Logo} from '../../components/Logo'
 import {CustomButton} from '../../components/CustomButton'
-import React, {FC} from 'react'
+import {FC} from 'react'
 
 export const EnterScreen: FC<any> = ({navigation}) => {
 

@@ -1,13 +1,15 @@
 import React, {FC} from 'react'
 import {StyleSheet, Text, TextInput, View} from 'react-native'
-import {Controller, useForm} from 'react-hook-form'
+import {Control, Controller} from 'react-hook-form'
+
 
 interface InputRegisterType {
   textName: string
   placeHolderName: string
   controllerName: string
   placeholderTextColor?: string
-
+  errors: any
+  control: Control
 }
 
 export const InputRegister: FC<InputRegisterType> = ({
@@ -15,14 +17,9 @@ export const InputRegister: FC<InputRegisterType> = ({
                                                        controllerName,
                                                        textName,
                                                        placeholderTextColor,
+                                                       control,
+                                                       errors
                                                      }) => {
-  const {
-    control,
-    handleSubmit,
-    formState: {errors, isValid},
-  } = useForm({mode: 'onBlur'})
-
-  const onSubmit = (data: any) => console.log(data)
 
   return (
     <View style={styles.inputContainer}>
@@ -40,6 +37,7 @@ export const InputRegister: FC<InputRegisterType> = ({
                                         placeholderTextColor={placeholderTextColor}
                                         placeholder={placeHolderName} />}
       />
+      {errors.controllerName && <Text>{errors.controllerName.message}</Text>}
     </View>
   )
 }

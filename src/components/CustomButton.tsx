@@ -31,17 +31,18 @@ export const CustomButton: FC<PropsType> = ({
                                               title,
                                             }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity style={{
+      backgroundColor,
+      borderRadius,
+      borderColor,
+      borderWidth,
+    }}>
       <Text style={{
-        borderWidth,
-        borderRadius,
-        borderColor,
         color,
         paddingHorizontal,
         paddingVertical,
         textAlign,
         fontSize,
-        backgroundColor,
         fontWeight,
       }}
             onPress={onPress}
