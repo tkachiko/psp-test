@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Logo} from '../../components/Logo'
 import {CustomButton} from '../../components/CustomButton'
-import {FC} from 'react'
+import React, {FC} from 'react'
 
 export const EnterScreen: FC<any> = ({navigation}) => {
 
@@ -10,9 +10,7 @@ export const EnterScreen: FC<any> = ({navigation}) => {
       <Logo width={112}
             height={112}
             marginBottom={16} />
-      <Text style={styles.heading}>Программа</Text>
-      <Text style={styles.heading}>поддержки пациентов</Text>
-      <Text style={styles.heading}>и врачей</Text>
+      <Text style={styles.heading}>{'Программа\nподдержки пациентов\nи врачей'}</Text>
       <TouchableOpacity>
         <Text style={styles.text}>
           Регистрация
@@ -54,7 +52,7 @@ const styles = StyleSheet.create({
 
 export const stylesContainer = StyleSheet.create({
   container: {
-    flex: 2,
+    height: '100%',
     backgroundColor: '#1E63EE',
     alignItems: 'center',
     justifyContent: 'center',

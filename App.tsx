@@ -10,7 +10,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name={'Enter'} component={EnterScreen} />
+        <Stack.Screen options={{headerShown: false}} name={'Enter'} component={EnterScreen} />
         <Stack.Screen name={'Register'} component={RegisterScreen} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,13 +1,15 @@
-import React, {useState} from 'react'
-import {SafeAreaView, StyleSheet, Text, TextInput, View} from 'react-native'
+import React from 'react'
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native'
 import {Logo} from '../../components/Logo'
 import {useNavigation} from '@react-navigation/native'
-import {Controller, useForm} from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 import {CustomButton} from '../../components/CustomButton'
-import {Picker} from '@react-native-picker/picker'
+import {InputRegister} from '../../components/InputRegister'
+import {InputCity} from '../../components/InputCity'
+import {CheckBoxConsent} from '../../components/CheckBoxConsent'
+import {AddFile} from '../../components/AddFile'
 
 export const RegisterScreen = () => {
-  const [city, setCity] = useState('Выберите')
   const navigation = useNavigation()
 
   const {
@@ -18,160 +20,72 @@ export const RegisterScreen = () => {
 
   const onSubmit = (data: any) => console.log(data)
 
+
   return (
     <SafeAreaView style={styles.container}>
-      <Logo width={60} height={60} marginBottom={16} />
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Фамилия</Text>
-        <Controller
-          name={'lastName'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input} placeholder={'Фамилия'} />}
+      <Logo position={'relative'}
+            width={60}
+            height={60}
+            marginBottom={16} />
+      <ScrollView style={styles.scrollContainer}>
+        <InputRegister textName={'Фамилия'}
+                       placeHolderName={'Фамилия'}
+                       controllerName={'lastName'} />
+        <InputRegister textName={'Имя'}
+                       placeHolderName={'Имя'}
+                       controllerName={'firstName'} />
+        <InputRegister textName={'Отчество'}
+                       placeHolderName={'Отчество'}
+                       controllerName={'middleName'} />
+        <InputRegister textName={'Телефон'}
+                       placeHolderName={'+7 (___) ___-__-__'}
+                       placeholderTextColor={'black'}
+                       controllerName={'middleName'} />
+        <InputRegister textName={'Email'}
+                       placeHolderName={'Email'}
+                       controllerName={'email'} />
+        <InputCity controllerName={'city'} />
+        <AddFile textName={'Диплом'}
+                 placeHolderName={'Прикрепить файл'}
+                 placeholderTextColor={'#1E63EE'} />
+        <InputRegister textName={'Специали-\nзация'}
+                       placeHolderName={'Специализация'}
+                       controllerName={'specialization'} />
+        <CheckBoxConsent textConsent={'Согласие на обработку персональных данных'} />
+        <CheckBoxConsent textConsent={'Согласие на участие в акциях \n' +
+          'по продвижению приложения'} />
+        <CheckBoxConsent textConsent={'Согласие на участие в галерее рекомендованных врачей'} />
+        <InputRegister textName={'Введите\nпромокод'}
+                       placeHolderName={'Промокод'}
+                       controllerName={'promoCode'} />
+        <CustomButton onPress={handleSubmit(onSubmit)}
+                      color={'#fff'}
+                      borderColor={'#1E63EE'}
+                      backgroundColor={'#1E63EE'}
+                      fontSize={17}
+                      paddingHorizontal={119}
+                      paddingVertical={15}
+                      textAlign={'center'}
+                      title={'Продолжить'}
         />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Имя</Text>
-        <Controller
-          name={'name'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input} placeholder={'Имя'} />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Отчество</Text>
-        <Controller
-          name={'middleName'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input} placeholder={'Отчество'} />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Телефон</Text>
-        <Controller
-          name={'phone'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input} placeholder={'Телефон'} />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Email</Text>
-        <Controller
-          name={'email'}
-          control={control}
-          rules={{
-            required: {
-              value: true,
-              message: 'Field is required!',
-            },
-            pattern: {
-              value: (/^(?!.*@[^,]*,)/),
-              message: 'Invalid email',
-            },
-          }}
-          render={({field}) => <TextInput {...field} style={styles.input} placeholder={'Email'} />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Город</Text>
-        <Controller
-          name={'city'}
-          control={control}
-          render={({field}) => <Picker {...field} style={styles.input} selectedValue={city} onValueChange={setCity}>
-            <Picker.Item label="Москва" value="moscow" />
-            <Picker.Item label="Санкт-Петербург" value="moscow" />
-          </Picker>
-          }
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Диплом</Text>
-        <Controller
-          name={'diploma'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input} placeholder={'Диплом'} />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Специализация</Text>
-        <Controller
-          name={'spec'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input} placeholder={'Специализация'} />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Checkbox</Text>
-        <Controller
-          name={'check'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input}  />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Checkbox</Text>
-        <Controller
-          name={'check'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input}  />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Checkbox</Text>
-        <Controller
-          name={'check'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input}  />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.text}>Promocode</Text>
-        <Controller
-          name={'promocode'}
-          control={control}
-          render={({field}) => <TextInput {...field} style={styles.input}  />}
-        />
-      </View>
-      <CustomButton onPress={handleSubmit(onSubmit)}
-                    color={'#fff'}
-                    borderColor={'#1E63EE'}
-                    backgroundColor={'#1E63EE'}
-                    fontSize={17}
-                    paddingHorizontal={119}
-                    paddingVertical={15}
-                    textAlign={'center'}
-                    title={'Продолжить'}
-      />
+      </ScrollView>
     </SafeAreaView>
   )
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    minHeight: '100%',
     backgroundColor: '#fff',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  inputContainer: {
-    flex: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: 343,
-  },
-  text: {
-    fontSize: 12,
-    fontWeight: '600',
-    flexWrap: 'wrap'
-  },
-  input: {
-    borderWidth: 1,
-    borderRadius: 8,
-    width: 263,
-    height: 48,
-    borderColor: '#1E63EE',
-    padding: 14,
+  scrollContainer: {
+    minHeight: '100%',
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
   },
 })
