@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#1E63EE',
     width: '100%',
-    height: 144,
+    height: 100,
     zIndex: 10,
     position: 'relative',
     marginBottom: 60,
   },
   navigation: {
     marginLeft: 17,
-    marginTop: 90,
+    marginTop: 54,
     width: '70%',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: 'absolute',
-    bottom: -58,
+    bottom: -60,
     left: '43%',
   },
 })

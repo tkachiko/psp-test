@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
-import {SafeAreaView, StyleSheet, Text} from 'react-native'
+import React, {FC, useState} from 'react'
+import {StyleSheet, Text, View} from 'react-native'
 import {CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell} from 'react-native-confirmation-code-field'
-import {Logo} from '../../components/Logo'
 import {CustomButton} from '../../components/CustomButton'
+import {CustomHeader} from '../../components/CustomHeader'
 
 const CELL_COUNT = 6
 
-export const ConfirmRegisterScreen = () => {
+export const ConfirmRegisterScreen: FC<any> = ({navigation}) => {
   const [value, setValue] = useState('')
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT})
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -15,11 +15,8 @@ export const ConfirmRegisterScreen = () => {
   })
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Logo position={'relative'}
-            width={60}
-            height={60}
-            marginBottom={16} />
+    <View style={styles.container}>
+      <CustomHeader name={'Register'} navigation={navigation} />
       <Text style={styles.title}>Введите код авторизации</Text>
       <CodeField
         ref={ref}
@@ -40,7 +37,8 @@ export const ConfirmRegisterScreen = () => {
         )}
       />
       <Text style={styles.askCode}>Запросить код авторизации</Text>
-      <CustomButton onPress={() => {}}
+      <CustomButton onPress={() => {
+      }}
                     color={'#fff'}
                     borderColor={'#1E63EE'}
                     backgroundColor={'#1E63EE'}
@@ -50,7 +48,7 @@ export const ConfirmRegisterScreen = () => {
                     textAlign={'center'}
                     title={'Продолжить'}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -83,7 +81,7 @@ const styles = StyleSheet.create({
     borderColor: '#CACACC',
     borderRadius: 8,
     textAlign: 'center',
-    marginHorizontal: 6
+    marginHorizontal: 6,
   },
   focusCell: {
     borderColor: '#000',
@@ -94,5 +92,5 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 18,
     margin: 16,
-  }
+  },
 })
