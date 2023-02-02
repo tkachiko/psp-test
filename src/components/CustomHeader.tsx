@@ -1,6 +1,5 @@
 import React, {FC} from 'react'
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import {Logo} from './Logo'
+import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
 export const CustomHeader: FC<any> = ({navigation, name}) => {
   const onBack = () => {
@@ -8,26 +7,19 @@ export const CustomHeader: FC<any> = ({navigation, name}) => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.navigation}>
         <TouchableOpacity>
           <Text onPress={onBack}
           >
             <View>
-            <Image style={styles.img} source={require('../res/images/cross.png')} />
+              <Image style={styles.img} source={require('../res/images/cross.png')} />
             </View>
           </Text>
         </TouchableOpacity>
         <Text style={styles.text}>Регистрация в кабинете врача</Text>
       </View>
-      <View style={styles.logoContainer}>
-        <Logo position={'relative'}
-              width={60}
-              height={60}
-              marginBottom={16}
-        />
-      </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -36,14 +28,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#1E63EE',
     width: '100%',
-    height: 100,
+    height: 170,
     zIndex: 10,
     position: 'relative',
-    marginBottom: 60,
   },
   navigation: {
     marginLeft: 17,
-    marginTop: 54,
     width: '70%',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -57,10 +47,5 @@ const styles = StyleSheet.create({
     width: 14,
     height: 14,
     marginTop: 8,
-  },
-  logoContainer: {
-    position: 'absolute',
-    bottom: -60,
-    left: '43%',
   },
 })

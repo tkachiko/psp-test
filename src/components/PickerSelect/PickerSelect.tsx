@@ -27,7 +27,7 @@ export const PickerSelect: FC<IPickerSelect> = memo(({textName, controllerName, 
                           value={value}
           />}
       />
-      <Image style={styles.img} source={require('../res/images/arrow.png')}/>
+      <Image style={styles.img} source={require('../../res/images/arrow.png')}/>
     </View>
   )
 })

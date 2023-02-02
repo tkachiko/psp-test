@@ -4,11 +4,10 @@ import {Controller, useFormContext} from 'react-hook-form'
 
 
 interface InputRegisterType {
-  textName: string
-  placeHolderName: string
+  textName?: string
+  placeHolderName?: string
   controllerName: string
   placeholderTextColor?: string
-  errors?: any
   keyboardType?: KeyboardTypeOptions | undefined
   required?: boolean
 }
@@ -25,7 +24,6 @@ export const InputRegister: FC<InputRegisterType> = ({
   const {control, formState: {errors, isSubmitted}} = useFormContext()
 
   const errorMessage = 'Заполните поле'
-
   const inputSuccess = isSubmitted && styles.inputSuccess
   const inputFinalClass = errors[controllerName] ? [styles.input, styles.inputError] : [styles.input, inputSuccess]
 
@@ -36,7 +34,7 @@ export const InputRegister: FC<InputRegisterType> = ({
         <Controller
           rules={{
             required: required,
-            minLength: 1,
+            minLength: { value: 3, message: ''}
           }}
           name={controllerName}
           control={control}

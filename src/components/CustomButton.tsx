@@ -14,6 +14,7 @@ type PropsType = {
   backgroundColor?: string
   textAlign: 'auto' | 'left' | 'right' | 'center' | 'justify' | undefined
   onPress: () => void
+  marginTop?: number
 }
 
 export const CustomButton: FC<PropsType> = ({
@@ -29,6 +30,7 @@ export const CustomButton: FC<PropsType> = ({
                                               fontWeight = '600',
                                               onPress,
                                               title,
+                                              marginTop,
                                             }) => {
   return (
     <TouchableOpacity style={{
@@ -36,6 +38,7 @@ export const CustomButton: FC<PropsType> = ({
       borderRadius,
       borderColor,
       borderWidth,
+      marginTop,
     }}>
       <Text style={{
         color,

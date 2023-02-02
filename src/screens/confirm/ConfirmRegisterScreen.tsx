@@ -1,8 +1,10 @@
 import React, {FC, useState} from 'react'
-import {StyleSheet, Text, View} from 'react-native'
-import {CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell} from 'react-native-confirmation-code-field'
+import {ScrollView, StyleSheet, Text, View} from 'react-native'
 import {CustomButton} from '../../components/CustomButton'
 import {CustomHeader} from '../../components/CustomHeader'
+import {PATH} from '../../route/Routes'
+import {CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell} from 'react-native-confirmation-code-field'
+import {Logo} from '../../components/Logo'
 
 const CELL_COUNT = 6
 
@@ -16,51 +18,74 @@ export const ConfirmRegisterScreen: FC<any> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <CustomHeader name={'Register'} navigation={navigation} />
-      <Text style={styles.title}>Введите код авторизации</Text>
-      <CodeField
-        ref={ref}
-        {...props}
-        value={value}
-        onChangeText={setValue}
-        cellCount={CELL_COUNT}
-        rootStyle={styles.codeFieldRoot}
-        keyboardType="number-pad"
-        textContentType="oneTimeCode"
-        renderCell={({index, symbol, isFocused}) => (
-          <Text
-            key={index}
-            style={[styles.cell, isFocused && styles.focusCell]}
-            onLayout={getCellOnLayoutHandler(index)}>
-            {symbol || (isFocused ? <Cursor /> : null)}
-          </Text>
-        )}
-      />
-      <Text style={styles.askCode}>Запросить код авторизации</Text>
-      <CustomButton onPress={() => {
-      }}
-                    color={'#fff'}
-                    borderColor={'#1E63EE'}
-                    backgroundColor={'#1E63EE'}
-                    fontSize={17}
-                    paddingHorizontal={119}
-                    paddingVertical={15}
-                    textAlign={'center'}
-                    title={'Продолжить'}
-      />
+      <CustomHeader name={PATH.REGISTER} navigation={navigation} />
+      <View style={styles.logoContainer}>
+        <Logo position={'relative'}
+              width={60}
+              height={60}
+              marginBottom={16}
+        />
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  style={styles.scrollContainer}
+      >
+        <Text style={styles.title}>Введите код авторизации</Text>
+        <CodeField
+          ref={ref}
+          {...props}
+          value={value}
+          onChangeText={setValue}
+          cellCount={CELL_COUNT}
+          rootStyle={styles.codeFieldRoot}
+          keyboardType="number-pad"
+          textContentType="oneTimeCode"
+          renderCell={({index, symbol, isFocused}) => (
+            <Text
+              key={index}
+              style={[styles.cell, isFocused && styles.focusCell]}
+              onLayout={getCellOnLayoutHandler(index)}>
+              {symbol || (isFocused ? <Cursor /> : null)}
+            </Text>
+          )}
+        />
+        <Text style={styles.askCode}>Запросить код авторизации</Text>
+        <CustomButton onPress={() => {
+        }}
+                      color={'#fff'}
+                      borderColor={'#1E63EE'}
+                      backgroundColor={'#1E63EE'}
+                      fontSize={17}
+                      paddingHorizontal={119}
+                      paddingVertical={15}
+                      textAlign={'center'}
+                      title={'Продолжить'}
+        />
+      </ScrollView>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  scrollContainer: {
+    width: '100%',
+    height: '100%',
+    paddingVertical: 50,
+    paddingHorizontal: 20,
+    margin: -60,
+    zIndex: 100,
     backgroundColor: '#fff',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginBottom: 100,
+  },
+  logoContainer: {
+    position: 'absolute',
+    top: 94,
+    zIndex: 1000,
   },
   title: {
     textAlign: 'center',
@@ -69,7 +94,7 @@ const styles = StyleSheet.create({
   },
   codeFieldRoot: {
     marginTop: 14,
-    justifyContent: 'space-between',
+    alignSelf: 'center',
   },
   cell: {
     width: 40,
@@ -92,5 +117,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 18,
     margin: 16,
+    alignSelf: 'center'
   },
 })

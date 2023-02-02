@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Logo} from '../../components/Logo'
 import {CustomButton} from '../../components/CustomButton'
 import {FC} from 'react'
+import {PATH} from "../../route/Routes";
 
 export const EnterScreen: FC<any> = ({navigation}) => {
     return (
@@ -26,7 +27,7 @@ export const EnterScreen: FC<any> = ({navigation}) => {
                           textAlign={'center'}
                           title={'Врач'}
                           onPress={() =>
-                              navigation.navigate('Register')
+                              navigation.navigate(PATH.REGISTER)
                           }
             />
         </View>

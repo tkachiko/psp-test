@@ -23,9 +23,11 @@ export const AddFile: FC<AddFileType> = memo(({placeHolderName, textName, contro
     }
   }
 
+  const finalTextStyle = resName ? [styles.text, styles.empty] : styles.text
+
   return (
     <View style={styles.inputContainer}>
-      <Text style={styles.text}>{textName}</Text>
+      <Text style={finalTextStyle}>{textName}</Text>
       <View>
         <Controller
           name={controllerName}
@@ -48,7 +50,8 @@ export const AddFile: FC<AddFileType> = memo(({placeHolderName, textName, contro
         {resName && <View style={styles.resContainer}>
           <Text onPress={() => {
             setRes('')
-          }} style={styles.resName}>{resName}</Text>
+          }} style={styles.resName}>{resName}
+          </Text>
           <Image style={styles.img} source={require('../res/images/blueCross.png')} />
         </View>}
       </View>
@@ -68,6 +71,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     flexWrap: 'wrap',
+    justifyContent: 'center'
+  },
+  empty: {
+    alignSelf: 'flex-start',
+    paddingTop: 18
   },
   clipContainer: {
     position: 'absolute',
