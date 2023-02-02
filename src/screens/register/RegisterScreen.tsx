@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import {KeyboardTypeOptions, ScrollView, StyleSheet, Text, View} from 'react-native'
+import {KeyboardTypeOptions, ScrollView, StyleSheet, View} from 'react-native'
 import {FormProvider, useForm} from 'react-hook-form'
 import {CustomButton} from '../../components/CustomButton'
 import {InputRegister} from '../../components/InputRegister'
@@ -125,12 +125,6 @@ export const RegisterScreen: FC<any> = ({navigation}) => {
                       title={'Продолжить'}
                       marginTop={17}
         />
-        <View>
-          <Text>Yo hello</Text>
-          <Text>Yo hello</Text>
-          <Text>Yo hello</Text>
-          <Text>Yo hello</Text>
-        </View>
       </ScrollView>
     </View>
   )
@@ -143,8 +137,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     width: '100%',
-    paddingVertical: 50,
-    paddingHorizontal: 20,
+    paddingTop: 50,
     margin: -60,
     zIndex: 100,
     backgroundColor: '#fff',
